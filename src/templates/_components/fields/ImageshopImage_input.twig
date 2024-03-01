@@ -14,7 +14,8 @@
 #}
 
 {% set valueString = craft.craftimageshop.getValueString(value) %}
+{% set loadingText = 'Loading Imageshop component...'|t('craft-imageshop') %}
 
 <div id="{{ id }}">
-  <imageshop button-text="{{ buttonText|t }}" default-interface-name="{{ interfaceName }}" default-language="{{ language }}" namespaced-id="{{ namespacedId }}" max-select="{{ maxSelect }}" name="{{ name }}" init-value="{{ valueString }}"></imageshop>
+  <imageshop button-text="{{ buttonText|t }}" default-interface-name="{{ interfaceName }}" default-language="{{ language }}" namespaced-id="{{ namespacedId }}" max-select="{{ maxSelect }}" name="{{ name }}" init-value="{{ valueString }}">{{ loadingText }}</imageshop>
 </div>

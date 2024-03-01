@@ -28,6 +28,7 @@ return [
     'Imageshop plugin loaded' => 'Imageshop plugin loaded',
     'Interface name' => 'Interface name',
     'Language' => 'Language',
+    'Loading Imageshop component...' => 'Loading Imageshop component...',
     'Max number of images' => 'Max number of images',
     'Maximum number of images the user can select. 0 means infinite' => 'Maximum number of images the user can select. 0 means infinite',
     'Missing token, please add it in the <a href="#{ settingsUrl }">Imageshop plugin settings</a>.' => 'Missing token, please add it in the <a href="#{ settingsUrl }">Imageshop plugin settings</a>.',
@@ -35,5 +36,4 @@ return [
     'Refresh' => 'Refresh',
     'Text to display on the button.' => 'Text to display on the button.',
     'Token' => 'Token',
-    '{name} plugin loaded' => 'Fjasebengel loaded engelsk {name}'
 ];
