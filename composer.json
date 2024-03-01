@@ -1,8 +1,8 @@
 {
   "name": "trydig/craft-imageshop",
-  "description": "Integrate with an Imageshop account and use Imageshop assets in Craft",
+  "description": "Integrate with an Imageshop account and use Imageshop assets in Craft.",
   "type": "craft-plugin",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "keywords": [
     "craft",
     "cms",
@@ -10,6 +10,10 @@
     "craft-plugin",
     "imageshop"
   ],
+  "support": {
+    "docs": "https://git1.apt.no/open/craft-imageshop/-/blob/main/README.md",
+    "issues": "https://git1.apt.no/open/craft-imageshop/-/issues"
+  },
   "license": "MIT",
   "authors": [
     {
@@ -33,10 +37,10 @@
   "extra": {
     "name": "Craft Imageshop",
     "handle": "craft-imageshop",
-    "schemaVersion": "2.0.0",
+    "schemaVersion": "0.0.2",
     "hasCpSettings": true,
     "hasCpSection": false,
-    "changelogUrl": "https://example.com",
+    "changelogUrl": "https://git1.apt.no/open/craft-imageshop/-/blob/main/CHANGELOG.md",
     "components": {
       "image": "trydig\\craftimageshop\\services\\Image",
       "soap": "trydig\\craftimageshop\\services\\Soap"

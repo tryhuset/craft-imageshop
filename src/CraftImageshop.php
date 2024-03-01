@@ -70,7 +70,7 @@ class CraftImageshop extends Plugin
      *
      * @var string
      */
-    public $schemaVersion = '2.0.0';
+    public $schemaVersion = '0.0.2';
 
     // Public Methods
     // =========================================================================
