@@ -1,0 +1,57 @@
+{
+  "name": "trydig/craft-imageshop",
+  "description": "Integrate with an Imageshop account and use Imageshop assets in Craft",
+  "type": "craft-plugin",
+  "version": "2.0.0",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "imageshop"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "TRY Dig",
+      "homepage": "https://try.no/"
+    },
+    {
+      "name": "Vangen & Plotz AS",
+      "homepage": "https://vangenplotz.no/"
+    }
+  ],
+  "require": {
+    "php": "^8.0.2|^9.0",
+    "craftcms/cms": "^3.0.0|^4.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "trydig\\craftimageshop\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "Craft Imageshop",
+    "handle": "craft-imageshop",
+    "schemaVersion": "2.0.0",
+    "hasCpSettings": true,
+    "hasCpSection": false,
+    "changelogUrl": "https://example.com",
+    "components": {
+      "image": "trydig\\craftimageshop\\services\\Image",
+      "soap": "trydig\\craftimageshop\\services\\Soap"
+    },
+    "class": "trydig\\craftimageshop\\CraftImageshop"
+  },
+  "config": {
+    "platform": {
+      "php": "8.0.2"
+    },
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

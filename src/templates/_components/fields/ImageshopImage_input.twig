@@ -1,0 +1,20 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Imageshop plugin for Craft CMS 3 / 4
+ *
+ * ImageshopImage Field Input
+ *
+ * @author    Vangen & Plotz AS
+ * @copyright Copyright (c) 2018 Vangen & Plotz AS
+ * @link      https://vangenplotz.no/
+ * @package   Imageshop
+ * @since     0.0.1
+ */
+#}
+
+{% set valueString = craft.craftimageshop.getValueString(value) %}
+
+<div id="{{ id }}">
+  <imageshop button-text="{{ buttonText|t }}" default-interface-name="{{ interfaceName }}" default-language="{{ language }}" namespaced-id="{{ namespacedId }}" max-select="{{ maxSelect }}" name="{{ name }}" init-value="{{ valueString }}"></imageshop>
+</div>

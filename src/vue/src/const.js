@@ -1,0 +1,2 @@
+export const DOCUMENTID_INDEX = 2
+export const DOCUMENTLANGUAGE_INDEX = 1

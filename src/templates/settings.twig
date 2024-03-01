@@ -1,0 +1,126 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Imageshop plugin for Craft CMS 3 / 4
+ *
+ * Imageshop Settings.twig
+ *
+ * @author    Vangen & Plotz AS
+ * @copyright Copyright (c) 2018 Vangen & Plotz AS
+ * @link      https://vangenplotz.no/
+ * @package   Imageshop
+ * @since     0.0.1
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("trydig\\craftimageshop\\assetbundles\\Imageshop\\ImageshopAsset") %}
+
+{{ forms.textField({
+    label: 'Token'|t,
+    instructions: 'Imageshop token',
+    id: 'token',
+    name: 'token',
+    value: settings['token']})
+}}
+
+{% if settings['token'] is not empty %}
+  <p class="warning">{{ 'Changing the token will make all previously selected images inaccessible!'|t }}</p>
+{% endif %}
+
+{% set languages = [
+  {
+    label: 'Norwegian'|t,
+    value: 'no'
+  }, {
+    label: 'English'|t,
+    value: 'en'
+  }
+] %}
+
+{{ forms.selectField({
+    label: 'Language'|t,
+    id: 'language',
+    name: 'language',
+    options: languages,
+    value: settings['language']})
+}}
+
+<div class="field">
+  <div class="heading">
+    <label for="imageshop-settings-interface-name">{{ 'Interface name'|t }}</label>
+  </div>
+  <div class="input ltr">
+    <div class="flex">
+      <div class="select s3-bucket-select">
+        <select id="imageshop-settings-interface-name" name="interfaceName">
+          <option value="{{ settings['interfaceName'] }}">{{ settings['interfaceName'] }}</option>
+        </select>
+      </div>
+
+      <div class="btn" id="imageshop-settings-interface-refresh-button">{{ 'Refresh'|t }}</div>
+      <div class="spinner hidden"  id="imageshop-settings-interface-refresh-button-spinner"></div>
+    </div>
+
+  </div>
+</div>
+
+
+{% js %}
+  var imageshopSettingsPageInterfaceSelect = $('#settings-imageshop-settings-interface-name').first();
+  var imageshopSettingsPageInterfaceRefreshButton = $('#settings-imageshop-settings-interface-refresh-button').first();
+  var imageshopSettingsPageInterfaceRefreshButtonSpinner = $('#settings-imageshop-settings-interface-refresh-button-spinner').first();
+  var imageshopSettingsPageInterfaceValue = '{{ settings['interfaceName'] }}';
+
+  imageshopSettingsPageInterfaceRefreshButton.click(function() {
+    imageshopSettingsPageInterfaceRefreshOptions();
+  });
+
+  {% if settings['token'] is not empty %}
+    imageshopSettingsPageInterfaceRefreshOptions();
+  {% endif %}
+
+  function imageshopSettingsPageInterfaceRefreshOptions() {
+    var imageshopSettingsPageTokenValue = $('#settings-token').first().val();
+
+    if( imageshopSettingsPageTokenValue ) {
+      imageshopSettingsPageInterfaceRefreshButton.prop('disabled', true);
+      imageshopSettingsPageInterfaceRefreshButtonSpinner.removeClass('hidden');
+
+      var data = {
+        action: 'imageshop/interface',
+        token: imageshopSettingsPageTokenValue
+      }
+
+      var tokenName = Craft.csrfTokenName;
+      data[tokenName] = Craft.csrfTokenValue;
+
+      $.ajax({
+        type: 'post',
+        url: '',
+        data: data
+      })
+        .done(function(result) {
+          var options = result && result.GetInterfacesResponse.GetInterfacesResult.Interface;
+          
+          imageshopSettingsPageInterfaceRefreshButton.prop('disabled', false);
+          imageshopSettingsPageInterfaceRefreshButtonSpinner.addClass('hidden');
+
+          imageshopSettingsPageInterfaceSelect.empty();
+          
+          if( Array.isArray(options) && options.length ) {
+            
+
+            $.each(options, function(index, option) {
+              imageshopSettingsPageInterfaceSelect.append('<option value="' + option.Path + '"' + (imageshopSettingsPageInterfaceValue && option.Path === imageshopSettingsPageInterfaceValue ? "selected" : "" ) + '>' + option.Name + '</option>')
+            });
+
+          } else if ( options ) {
+            imageshopSettingsPageInterfaceSelect.append('<option value="' + options.Path + '"' + (imageshopSettingsPageInterfaceValue && options.Path === imageshopSettingsPageInterfaceValue ? "selected" : "" ) + '>' + options.Name + '</option>')
+          }
+        });
+    }
+  }
+
+{% endjs %}

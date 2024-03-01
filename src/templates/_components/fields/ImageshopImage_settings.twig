@@ -1,0 +1,39 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Imageshop plugin for Craft CMS
+ *
+ * ImageshopImage Field Settings
+ *
+ * @author    Vangen & Plotz AS
+ * @copyright Copyright (c) 2018 Vangen & Plotz AS
+ * @link      https://vangenplotz.no/
+ * @package   Imageshop
+ * @since     0.0.1
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("trydig\\craftimageshop\\assetbundles\\Imageshop\\ImageshopAsset") %}
+
+{% if token is null %}
+  {% set settingsUrl = cpUrl('/settings/plugins/craft-imageshop') %}
+  <p class="warning">{{ 'Missing token, please add it in the <a href="#{ settingsUrl }">Imageshop plugin settings</a>.'|t('imageshop') }}</p>
+{% endif %}
+
+{{ forms.textField({
+    label: 'Button text'|t,
+    instructions: 'Text to display on the button.'|t,
+    id: 'buttonText',
+    name: 'buttonText',
+    value: field['buttonText']})
+}}
+
+{{ forms.textField({
+    label: 'Max number of images'|t,
+    instructions: 'Maximum number of images the user can select. 0 means infinite'|t,
+    id: 'maxSelect',
+    name: 'maxSelect',
+    value: field['maxSelect']})
+}}
