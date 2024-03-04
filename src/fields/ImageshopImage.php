@@ -67,7 +67,7 @@ class ImageshopImage extends Field implements PreviewableFieldInterface
      */
     public static function displayName(): string
     {
-        return Craft::t('craftimageshop', 'ImageshopImage');
+        return Craft::t('craft-imageshop', 'Imageshop Image');
     }
 
     // Public Methods
