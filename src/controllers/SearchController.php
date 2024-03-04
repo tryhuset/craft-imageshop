@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Imageshop plugin for Craft CMS 3
+ * Imageshop plugin for Craft CMS 4
  *
  * Integrate with an Imageshop account and use Imageshop resources in Craft
  *
@@ -47,7 +47,8 @@ class SearchController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
-    protected $allowAnonymous = ['index'];
+    protected array|bool|int
+        $allowAnonymous = ['index'];
 
     // Public Methods
     // =========================================================================

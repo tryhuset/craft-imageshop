@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Imageshop plugin for Craft CMS 3
+ * Imageshop plugin for Craft CMS 4
  *
  * Integrate with an Imageshop account and use Imageshop resources in Craft
  *
@@ -62,15 +62,6 @@ class CraftImageshop extends Plugin
      */
     public static $plugin;
 
-    // Public Properties
-    // =========================================================================
-
-    /**
-     * To execute your plugin’s migrations, you’ll need to increase its schema version.
-     *
-     * @var string
-     */
-    public $schemaVersion = '0.0.2';
 
     // Public Methods
     // =========================================================================
