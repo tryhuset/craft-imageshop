@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Imageshop plugin for Craft CMS 3 / 4
+ * Imageshop plugin for Craft CMS 3
  *
  * Integrate with an Imageshop account and use Imageshop resources in Craft
  *

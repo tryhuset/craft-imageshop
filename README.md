@@ -1,4 +1,4 @@
-# Imageshop plugin for Craft CMS 3 / 4
+# Imageshop plugin for Craft CMS 3
 
 Integrate with an Imageshop account and use Imageshop assets in Craft.
 
@@ -10,7 +10,7 @@ This is a copy of [maxwelvm/Craft-Imageshop](https://github.com/maxwelvm/Craft-I
 
 ## Requirements
 
-This plugin requires Craft CMS 3 or 4.
+This plugin requires Craft CMS 3.
 
 To use this plugin you need an account with [Imageshop](https://www.imageshop.org/).
 
