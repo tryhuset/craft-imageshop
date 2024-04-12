@@ -21,15 +21,22 @@ use Craft;
 use craft\base\Plugin;
 use craft\services\Plugins;
 use craft\events\PluginEvent;
+use craft\events\RegisterCacheOptionsEvent;
 use craft\web\UrlManager;
 use craft\services\Fields;
 use craft\web\twig\variables\CraftVariable;
 use craft\events\RegisterComponentTypesEvent;
 use craft\events\RegisterUrlRulesEvent;
 use craft\helpers\UrlHelper;
+use craft\utilities\ClearCaches;
 use craft\i18n\PhpMessageSource;
 
+use trydig\craftimageshop\services\Soap as SoapService;
+use trydig\craftimageshop\services\Image as ImageService;
+use trydig\craftimageshop\services\Cache as CacheService;
+
 use yii\base\Event;
+use yii\caching\TagDependency;
 
 /**
  * Craft plugins are very much like little applications in and of themselves. We’ve made
@@ -51,6 +58,8 @@ use yii\base\Event;
  */
 class CraftImageshop extends Plugin
 {
+    public const IMAGESHOP_CACHE_TAG = 'imageshop_objects';
+
     // Static Properties
     // =========================================================================
 
@@ -60,7 +69,7 @@ class CraftImageshop extends Plugin
      *
      * @var Imageshop
      */
-    public static $plugin;
+    public static CraftImageshop $plugin;
 
 
     // Public Methods
@@ -88,6 +97,13 @@ class CraftImageshop extends Plugin
         //     'basePath' => __DIR__ . '/translations',
         //     'allowOverrides' => true,
         // ];
+
+        $this->setComponents([
+            'SoapService' => SoapService::class,
+            'ImageService' => ImageService::class,
+            'CacheService' => CacheService::class,
+        ]);
+
 
         // Register our site routes
         Event::on(
@@ -141,6 +157,20 @@ class CraftImageshop extends Plugin
                         ))->send();
                     }
                 }
+            }
+        );
+
+        // Adds a separate cache handling option for this plugin
+        Event::on(
+            ClearCaches::class,
+            ClearCaches::EVENT_REGISTER_CACHE_OPTIONS,
+            static function (RegisterCacheOptionsEvent $event) {
+                $event->options[] = [
+                    'key' => 'imageshop-cache',
+                    'label' => Craft::t('craft-imageshop', 'Imageshop cache'),
+                    'info' => Craft::t('craft-imageshop', 'This will clear all data related to Imageshop from the cache'),
+                    'action' => [CraftImageshop::$plugin, 'invalidateCaches'],
+                ];
             }
         );
 
@@ -200,6 +230,23 @@ class CraftImageshop extends Plugin
             [
                 'settings' => $this->getSettings()
             ]
+        );
+    }
+
+    /**
+     * Invalidates all caches
+     */
+    public function invalidateCaches(): void
+    {
+        $cache = $this::getInstance()->CacheService->getCache();
+        $cache->flush();
+
+        Craft::info(
+            Craft::t(
+                'craft-imageshop',
+                'Cache cleared',
+            ),
+            __METHOD__
         );
     }
 }

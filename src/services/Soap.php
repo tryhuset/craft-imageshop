@@ -16,6 +16,8 @@ use trydig\craftimageshop\CraftImageshop;
 use Craft;
 use craft\base\Component;
 
+use yii\caching\TagDependency;
+
 /**
  * Soap Service
  *
@@ -266,10 +268,12 @@ class Soap extends Component
             'SOAPAction: ' . $action
         ];
 
-        $cacheKey = md5($url . implode(', ', $headers) . $xml);
+        $cacheKeyValue = $url . implode(', ', $headers) . $xml;
+        $cacheKey = md5($cacheKeyValue);
 
+        $cache = CraftImageshop::getInstance()->CacheService->getCache();
 
-        if (($cached = Craft::$app->getCache()->get($cacheKey)) !== false) {
+        if (($cached = $cache->get($cacheKey)) !== false) {
             return $cached;
         }
 
@@ -297,7 +301,7 @@ class Soap extends Component
             $cacheDuration = 300; // 5 minutes
         }
 
-        Craft::$app->getCache()->set($cacheKey, $result, $cacheDuration);
+        $cache->set($cacheKey, $result, $cacheDuration);
 
         return $result;
     }

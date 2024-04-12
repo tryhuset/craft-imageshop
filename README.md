@@ -33,7 +33,26 @@ To install the plugin, follow these instructions.
    composer require "trydig/craft-imageshop" -w && php craft plugin/install craft-imageshop
    ```
 
-3. ( In the Control Panel, go to Settings → Plugins and click the “Install” button for Imageshop. )
+3. ( In the Control Panel, go to Settings → Plugins and click the “Install” button for Imageshop if the plugin wasn't installed. )
+
+# Development
+
+To develop this plugin, include it as a package in a Craft installation by loading it from the file system.
+
+In your Craft projects `composer.json`, add the following in the `repositories` array
+
+```json
+{
+  "type": "path",
+  "url": "/some/path/on/your/file-system/craft-imageshop"
+}
+```
+
+If your Craft project already has a link to the repostitory on git1.apt.no, remove that and replace with the above code, then run `composer update` to use the version from your file system instead.
+
+If not, then you need to at the package as a composer requirement, like described above in step 2.
+
+You're now ready to do development on the plugin.
 
 # Field Overview
 
