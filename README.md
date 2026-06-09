@@ -23,7 +23,7 @@ To install the plugin, follow these instructions.
    ```json
    {
      "type": "vcs",
-     "url": "https://git1.apt.no/open/craft-imageshop.git
+     "url": "https://github.com/tryhuset/craft-imageshop.git
    }
    ```
 
