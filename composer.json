@@ -11,8 +11,7 @@
     "imageshop"
   ],
   "support": {
-    "docs": "https://git1.apt.no/open/craft-imageshop/-/blob/main/README.md",
-    "issues": "https://git1.apt.no/open/craft-imageshop/-/issues"
+    "docs": "https://https://github.com/tryhuset/craft-imageshop/-/blob/main/README.md"
   },
   "license": "MIT",
   "authors": [
@@ -40,7 +39,7 @@
     "schemaVersion": "0.0.2",
     "hasCpSettings": true,
     "hasCpSection": false,
-    "changelogUrl": "https://git1.apt.no/open/craft-imageshop/-/blob/main/CHANGELOG.md",
+    "changelogUrl": "https://github.com/tryhuset/craft-imageshop/-/blob/main/CHANGELOG.md",
     "components": {
       "image": "trydig\\craftimageshop\\services\\Image",
       "soap": "trydig\\craftimageshop\\services\\Soap"

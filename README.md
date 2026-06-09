@@ -23,7 +23,7 @@ To install the plugin, follow these instructions.
    ```json
    {
      "type": "vcs",
-     "url": "https://git1.apt.no/open/craft-imageshop.git"
+     "url": "https://git1.apt.no/open/craft-imageshop.git
    }
    ```
 
@@ -91,7 +91,7 @@ Note that changing the token will make all the previously selected images inacce
 You can add the field type to a standalone field or to a matrix block.
 
 Choose the text on the "Add image"-button and the "Maxiumum number of images" the user can choose. A value of `0` means the
-user kan choose an infinite amount of images.
+user kan choose an infinite amount of ima"ges.
 
 ## Using the Imageshop image field
 
